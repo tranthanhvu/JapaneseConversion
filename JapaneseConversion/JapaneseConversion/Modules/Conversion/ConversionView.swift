@@ -9,34 +9,28 @@ import SwiftUI
 import TextView
 
 struct ConversionView: View {
-    @State private var charType: JapaneseCharType = JapaneseCharType.hiragana
-    
-    @State private var charSizeType: JapaneseCharSizeType = JapaneseCharSizeType.both
-    
-    @State private var input: String = ""
     @State private var isEditing: Bool = false
-    @State private var result: String = ""
     
     @ObservedObject var viewModel = ConversionViewModel()
     
     var body: some View {
         VStack {
             GroupBox(label: Text("Input"), content: {
-                TextView(text: $input, isEditing: $isEditing)
+                TextView(text: $viewModel.inputText, isEditing: $isEditing)
                     .background(Color.white)
                     .frame(maxHeight: .infinity)
             })
             .padding(.all, 10)
             
             GroupBox(label: Text("Convert with options"), content: {
-                Picker(selection: $charType, label: Text("Picker"), content: {
+                Picker(selection: $viewModel.charType, label: Text("Picker"), content: {
                     ForEach(JapaneseCharType.allCases, id: \.self) { (type) in
                         Text(type.name).tag(type.rawValue)
                     }
                 })
                 .pickerStyle(SegmentedPickerStyle())
                 
-                Picker(selection: $charSizeType, label: Text("Picker"), content: {
+                Picker(selection: $viewModel.sizeType, label: Text("Picker"), content: {
                     ForEach(JapaneseCharSizeType.allCases, id: \.self) { (type) in
                         Text(type.name).tag(type.rawValue)
                     }
@@ -46,9 +40,9 @@ struct ConversionView: View {
             .padding(.horizontal, 10)
             
             GroupBox(label: Text("Result"), content: {
-                Text(result)
+                Text(viewModel.result)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
-                    .frame(maxHeight: .infinity)
             })
             .padding(.all, 10)
         }

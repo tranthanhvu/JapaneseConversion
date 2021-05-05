@@ -19,6 +19,7 @@
 		2E29E3AC264272CD00E40524 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E29E3AB264272CD00E40524 /* MainView.swift */; };
 		2E99C0AD26429B3900F062D6 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99C0AC26429B3800F062D6 /* Define.swift */; };
 		2E99C0B226429D0C00F062D6 /* ConversionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99C0B126429D0C00F062D6 /* ConversionViewModel.swift */; };
+		2E99C0B82642A69E00F062D6 /* Character+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99C0B72642A69E00F062D6 /* Character+Extension.swift */; };
 		2EBD21C32642909600A6B969 /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = 2EBD21C22642909600A6B969 /* TextView */; };
 		2EBD21CD264294C800A6B969 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD21CC264294C800A6B969 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		2E29E3AB264272CD00E40524 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2E99C0AC26429B3800F062D6 /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		2E99C0B126429D0C00F062D6 /* ConversionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewModel.swift; sourceTree = "<group>"; };
+		2E99C0B72642A69E00F062D6 /* Character+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extension.swift"; sourceTree = "<group>"; };
 		2EBD21CC264294C800A6B969 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 		2E29E3692642721700E40524 /* JapaneseConversion */ = {
 			isa = PBXGroup;
 			children = (
+				2E99C0B62642A69200F062D6 /* Extension */,
 				2E99C0AB26429B2200F062D6 /* Common */,
 				2E29E39D2642725B00E40524 /* Modules */,
 				2E29E36A2642721700E40524 /* AppDelegate.swift */,
@@ -174,6 +177,14 @@
 				2E99C0AC26429B3800F062D6 /* Define.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		2E99C0B62642A69200F062D6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2E99C0B72642A69E00F062D6 /* Character+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		2EBD21CB264294B300A6B969 /* Search */ = {
@@ -325,6 +336,7 @@
 				2E29E3A7264272C300E40524 /* SearchView.swift in Sources */,
 				2E29E3AC264272CD00E40524 /* MainView.swift in Sources */,
 				2E29E39F264272BB00E40524 /* ConversionView.swift in Sources */,
+				2E99C0B82642A69E00F062D6 /* Character+Extension.swift in Sources */,
 				2E29E36B2642721700E40524 /* AppDelegate.swift in Sources */,
 				2E29E36D2642721700E40524 /* SceneDelegate.swift in Sources */,
 				2E99C0B226429D0C00F062D6 /* ConversionViewModel.swift in Sources */,
