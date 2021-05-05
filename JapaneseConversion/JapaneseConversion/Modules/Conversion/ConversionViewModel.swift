@@ -8,6 +8,6 @@
 import Foundation
 import Combine
 
-class ConvertionViewModel: ObservableObject {
+class ConversionViewModel: ObservableObject {
     
 }

@@ -17,6 +17,8 @@ struct ConversionView: View {
     @State private var isEditing: Bool = false
     @State private var result: String = ""
     
+    @ObservedObject var viewModel = ConversionViewModel()
+    
     var body: some View {
         VStack {
             GroupBox(label: Text("Input"), content: {
@@ -24,6 +26,7 @@ struct ConversionView: View {
                     .background(Color.white)
                     .frame(maxHeight: .infinity)
             })
+            .padding(.all, 10)
             
             GroupBox(label: Text("Convert with options"), content: {
                 Picker(selection: $charType, label: Text("Picker"), content: {
@@ -40,12 +43,14 @@ struct ConversionView: View {
                 })
                 .pickerStyle(SegmentedPickerStyle())
             })
+            .padding(.horizontal, 10)
             
             GroupBox(label: Text("Result"), content: {
                 Text(result)
                     .background(Color.white)
                     .frame(maxHeight: .infinity)
             })
+            .padding(.all, 10)
         }
     }
 }

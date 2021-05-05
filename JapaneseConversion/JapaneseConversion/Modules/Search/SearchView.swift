@@ -23,14 +23,9 @@ struct SearchView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: nil, content: {
-            GroupBox {
-                HStack(alignment: .center, spacing: nil, content: {
-                    Text("Search Text")
-                        .padding(.all, 10)
-                    
-                    TextField("", text: $searchText)
-                })
-                
+            GroupBox(label: Text("Search Area"), content: {
+                TextField("Search Text", text: $searchText)
+                    .background(Color.white)
                 
                 Picker(selection: $charType, label: Text("Picker"), content: {
                     ForEach(JapaneseCharType.allCases, id: \.self) { (type) in
@@ -45,7 +40,7 @@ struct SearchView: View {
                     }
                 })
                 .pickerStyle(SegmentedPickerStyle())
-            }
+            })
             .padding(.all, 10)
 
             Divider()
