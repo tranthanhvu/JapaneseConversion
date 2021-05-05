@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,10 @@
 		2E29E3772642721900E40524 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E29E3752642721900E40524 /* LaunchScreen.storyboard */; };
 		2E29E3822642721A00E40524 /* JapaneseConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E29E3812642721A00E40524 /* JapaneseConversionTests.swift */; };
 		2E29E38D2642721A00E40524 /* JapaneseConversionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E29E38C2642721A00E40524 /* JapaneseConversionUITests.swift */; };
+		2E29E39F264272BB00E40524 /* ConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E29E39E264272BB00E40524 /* ConversionView.swift */; };
+		2E29E3A7264272C300E40524 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E29E3A6264272C300E40524 /* SearchView.swift */; };
+		2E29E3AC264272CD00E40524 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E29E3AB264272CD00E40524 /* MainView.swift */; };
+		2EBD21C32642909600A6B969 /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = 2EBD21C22642909600A6B969 /* TextView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,9 @@
 		2E29E3882642721A00E40524 /* JapaneseConversionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JapaneseConversionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E29E38C2642721A00E40524 /* JapaneseConversionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JapaneseConversionUITests.swift; sourceTree = "<group>"; };
 		2E29E38E2642721A00E40524 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E29E39E264272BB00E40524 /* ConversionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionView.swift; sourceTree = "<group>"; };
+		2E29E3A6264272C300E40524 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		2E29E3AB264272CD00E40524 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EBD21C32642909600A6B969 /* TextView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +107,7 @@
 		2E29E3692642721700E40524 /* JapaneseConversion */ = {
 			isa = PBXGroup;
 			children = (
+				2E29E39D2642725B00E40524 /* Modules */,
 				2E29E36A2642721700E40524 /* AppDelegate.swift */,
 				2E29E36C2642721700E40524 /* SceneDelegate.swift */,
 				2E29E36E2642721700E40524 /* ContentView.swift */,
@@ -136,6 +145,16 @@
 			path = JapaneseConversionUITests;
 			sourceTree = "<group>";
 		};
+		2E29E39D2642725B00E40524 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				2E29E39E264272BB00E40524 /* ConversionView.swift */,
+				2E29E3A6264272C300E40524 /* SearchView.swift */,
+				2E29E3AB264272CD00E40524 /* MainView.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,6 +171,9 @@
 			dependencies = (
 			);
 			name = JapaneseConversion;
+			packageProductDependencies = (
+				2EBD21C22642909600A6B969 /* TextView */,
+			);
 			productName = JapaneseConversion;
 			productReference = 2E29E3672642721700E40524 /* JapaneseConversion.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +245,9 @@
 				Base,
 			);
 			mainGroup = 2E29E35E2642721700E40524;
+			packageReferences = (
+				2EBD21C12642909600A6B969 /* XCRemoteSwiftPackageReference "TextView" */,
+			);
 			productRefGroup = 2E29E3682642721700E40524 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -266,6 +291,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E29E3A7264272C300E40524 /* SearchView.swift in Sources */,
+				2E29E3AC264272CD00E40524 /* MainView.swift in Sources */,
+				2E29E39F264272BB00E40524 /* ConversionView.swift in Sources */,
 				2E29E36B2642721700E40524 /* AppDelegate.swift in Sources */,
 				2E29E36D2642721700E40524 /* SceneDelegate.swift in Sources */,
 				2E29E36F2642721700E40524 /* ContentView.swift in Sources */,
@@ -597,6 +625,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2EBD21C12642909600A6B969 /* XCRemoteSwiftPackageReference "TextView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kenmueller/TextView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2EBD21C22642909600A6B969 /* TextView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EBD21C12642909600A6B969 /* XCRemoteSwiftPackageReference "TextView" */;
+			productName = TextView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2E29E35F2642721700E40524 /* Project object */;
 }
