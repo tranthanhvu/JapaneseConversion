@@ -6,45 +6,21 @@
 //
 
 import SwiftUI
+import Combine
 import TextView
 
-enum JapaneseCharType: Int, CaseIterable {
-    case hiragana
-    case both
-    case katakana
-    
-    var name: String {
-        switch self {
-        case .hiragana: return "hiragana"
-        case .both: return "both"
-        case .katakana: return "katakana"
-        }
-    }
-}
-
-enum JapaneseCharSizeType: Int, CaseIterable {
-    case fullSize
-    case both
-    case halfSize
-    
-    var name: String {
-        switch self {
-        case .fullSize: return "full-size"
-        case .both: return "both"
-        case .halfSize: return "half-size"
-        }
-    }
-}
-
 struct SearchView: View {
-    @State private var searchText: String = "hih"
+    @State private var searchText: String = "だめ"
+    
     @State private var charType: JapaneseCharType = JapaneseCharType.hiragana
+    
     @State private var charSizeType: JapaneseCharSizeType = JapaneseCharSizeType.both
     
     @State private var content = "だめ ダメ"
     @State private var isEditing = false
-
     
+    @ObservedObject var viewModel = SearchViewModel()
+
     var body: some View {
         VStack(alignment: .center, spacing: nil, content: {
             GroupBox {
