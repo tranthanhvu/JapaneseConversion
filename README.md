@@ -5,7 +5,7 @@ It's the first time I use MVVM Architecture, SwiftUI in combination with Combine
 If something goes wrong, please let me in on it. I'd appreciate that.
 
 ### Previews
-![Conversion](./Previews/Conversion.gif) ![Searching](./Previews/Searching.gif)
+![Conversion](./Previews/Conversion.gif) ![Searching](./Previews/Searching.gif) ![Form](./Previews/Form.gif)
 
 
 ### Achieve
