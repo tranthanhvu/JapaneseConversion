@@ -1,5 +1,5 @@
 # JapaneseConversion
-This is the sample code about converting and searching japanese string, allowing changing the options to find text with exact Katakana, Hiragana, or both. 
+This is the sample code about converting and searching Japanese string, allowing changing the options to find text with exact Katakana, Hiragana, or both. 
 
 It's the first time I use MVVM Architecture, SwiftUI in combination with Combine. So I doubt of the code what I have written 😙😙😙😙.
 If something goes wrong, please let me in on it. I'd appreciate that.
