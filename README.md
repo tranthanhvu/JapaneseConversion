@@ -17,10 +17,14 @@ I've used the constant below to distinguish characters which one is katakana, hi
         static let maxKatakana: UInt32 = 0x30ff
         static let minHiragana: UInt32 = 0x3040
         static let maxHiragana: UInt32 = 0x309f
+        static let nonExistentHiragana: [UInt32] = [0x3040, 0x3097, 0x3098]
         static let minKanji: UInt32 = 0x4e00
         static let maxKnaji: UInt32 = 0x9faf
     }
 ```
 
 ### References
-https://stackoverflow.com/a/3827144/1654338
+https://en.wikipedia.org/wiki/Hiragana_(Unicode_block)
+https://en.wikipedia.org/wiki/Katakana_(Unicode_block)
+https://en.wikipedia.org/wiki/Half-width_kana
+https://izsak.hatenadiary.org/entry/20100508/1273334470
