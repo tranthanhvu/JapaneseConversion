@@ -33,6 +33,7 @@ struct SearchView: View {
                         Text(type.name).tag(type.rawValue)
                     }
                 })
+                .disabled(true)
                 .pickerStyle(SegmentedPickerStyle())
             })
             .padding(.all, 10)

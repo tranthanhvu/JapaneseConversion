@@ -35,6 +35,7 @@ struct ConversionView: View {
                         Text(type.name).tag(type.rawValue)
                     }
                 })
+                .disabled(true)
                 .pickerStyle(SegmentedPickerStyle())
             })
             .padding(.horizontal, 10)
