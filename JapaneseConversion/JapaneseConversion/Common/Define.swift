@@ -41,8 +41,20 @@ enum SearchType: Int, CaseIterable {
     
     var name: String {
         switch self {
-        case .exact: return "Exact"
+        case .exact: return "Exact Characters"
         case .hiraganaAndkatakana: return "Hiragana And Katakana"
+        }
+    }
+}
+
+enum SearchFormType: Int, CaseIterable {
+    case exact
+    case fullWidthAndHalfWidth
+    
+    var name: String {
+        switch self {
+        case .exact: return "Exact Form"
+        case .fullWidthAndHalfWidth: return "Full-width and half-width"
         }
     }
 }

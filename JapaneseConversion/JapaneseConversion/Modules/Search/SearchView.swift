@@ -29,11 +29,10 @@ struct SearchView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 
                 Picker(selection: $viewModel.formType, label: Text("Picker"), content: {
-                    ForEach(JapaneseFormType.allCases, id: \.self) { (type) in
+                    ForEach(SearchFormType.allCases, id: \.self) { (type) in
                         Text(type.name).tag(type.rawValue)
                     }
                 })
-                .disabled(true)
                 .pickerStyle(SegmentedPickerStyle())
             })
             .padding(.all, 10)

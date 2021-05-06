@@ -14,11 +14,11 @@ class SearchViewModel: ObservableObject {
     // Input
     @Published var searchText = "だめ"
     @Published var searchType = SearchType.exact
-    @Published var formType = JapaneseFormType.fullWidth
+    @Published var formType = SearchFormType.exact
     
     // Output
     @Published private var searchArray: [String] = []
-    @Published var content: NSAttributedString = NSAttributedString(string: "だめ ダメ, だめ") 
+    @Published var content: NSAttributedString = NSAttributedString(string: "だめ ダメ, だめ ﾀﾞﾒ")
     
     private var bags = Set<AnyCancellable>()
     
@@ -42,20 +42,44 @@ class SearchViewModel: ObservableObject {
     }
     
     private var searchArrPublisher: AnyPublisher<[String], Never> {
-        Publishers.CombineLatest($searchText, $searchType)
-            .map({ (text, type) -> [String] in
+        Publishers.CombineLatest3($searchText, $searchType, $formType)
+            .map({ (text, type, form) -> [String] in
                 switch type {
                 case .exact:
-                    return [text]
-                case .hiraganaAndkatakana:
-                    let convertedHira = text.toHiragana()
-                    let convertedKata = text.toKatakana()
-                    
-                    if convertedHira == convertedKata {
-                        return [convertedHira]
+                    var result = [text]
+                    switch form {
+                    case .exact:
+                        return result
+                    case .fullWidthAndHalfWidth:
+                        self.appendDifferentForm(text: text, to: &result)
+                        return result
                     }
                     
-                    return [convertedHira, convertedKata]
+                case .hiraganaAndkatakana:
+                    var result = [text]
+                    switch form {
+                    case .exact:
+                        let convertedHira = text.toHiragana()
+                        if result.contains(convertedHira) == false {
+                            result.append(convertedHira)
+                        }
+                        
+                        let convertedKata = text.toKatakana()
+                        if result.contains(convertedKata) == false {
+                            result.append(convertedKata)
+                        }
+                    
+                        return result
+                    case .fullWidthAndHalfWidth:
+                        let convertedHira = text.toHiragana()
+                        self.appendDifferentForm(text: convertedHira, to: &result)
+                        
+                        let convertedKata = text.toKatakana()
+                        self.appendDifferentForm(text: convertedKata, to: &result)
+                        
+                        return result
+                    }
+                    
                 }
             })
             .eraseToAnyPublisher()
@@ -76,6 +100,18 @@ class SearchViewModel: ObservableObject {
             }
         } catch {
             print(error)
+        }
+    }
+    
+    func appendDifferentForm(text: String, to array: inout [String]) {
+        let halfWidthText = text.toHalfWidth()
+        if array.contains(halfWidthText) == false {
+            array.append(halfWidthText)
+        }
+        
+        let fullWidthText = text.toFullWidth()
+        if array.contains(fullWidthText) == false {
+            array.append(fullWidthText)
         }
     }
     
