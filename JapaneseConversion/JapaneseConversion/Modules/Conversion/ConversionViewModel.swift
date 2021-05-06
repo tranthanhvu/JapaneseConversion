@@ -9,9 +9,10 @@ import Foundation
 import Combine
 
 class ConversionViewModel: ObservableObject {
-    @Published var inputText = "だめ ダメ, だめ"
+    
+    @Published var inputText = "だめ ダメ, だめ \n ｱ　ア\n゠ ヸ"
     @Published var charType = JapaneseCharType.hiragana
-    @Published var sizeType = JapaneseCharSizeType.fullSize
+    @Published var formType = JapaneseFormType.fullWidth
     
     @Published var result = ""
     
@@ -22,13 +23,21 @@ class ConversionViewModel: ObservableObject {
     }
     
     func bind() {
-        Publishers.CombineLatest($inputText, $charType)
-            .map({ (text, type) -> String in
+        Publishers.CombineLatest3($inputText, $charType, $formType)
+            .map({ (text, type, form) -> String in
                 switch type {
                 case .hiragana:
                     return text.toHiragana()
                 case .katakana:
-                    return text.toKatakana()
+                    switch form {
+                    case .fullWidth:
+                        return text.toKatakana().toFullWidth()
+                    case .halfWidth:
+                        return text.toKatakana().toHalfWidth()
+                    case .both:
+                        return text.toKatakana()
+                        
+                    }
                 case .both:
                     return text
                 }

@@ -13,6 +13,7 @@ extension Character {
         static let maxKatakana: UInt32 = 0x30ff
         static let minHiragana: UInt32 = 0x3040
         static let maxHiragana: UInt32 = 0x309f
+        static let nonExistentHiragana: [UInt32] = [0x3040, 0x3097, 0x3098]
         static let minKanji: UInt32 = 0x4e00
         static let maxKnaji: UInt32 = 0x9faf
     }
@@ -27,7 +28,7 @@ extension Character {
     
     var isHiragana: Bool {
         if let value = self.unicodeScalars.first?.value {
-            return value >= Constant.minHiragana && value <= Constant.maxHiragana
+            return value >= Constant.minHiragana && value <= Constant.maxHiragana && Constant.nonExistentHiragana.contains(value) == false
         }
         
         return false
@@ -53,11 +54,13 @@ extension Character {
     
     func toHiragana() -> Character {
         if isKatakana,
-           let value = self.unicodeScalars.first?.value,
-           let scalar = Unicode.Scalar(value + Constant.minHiragana - Constant.minKatakana) {
-            return Character(scalar)
+           let value = self.unicodeScalars.first?.value {
+            let hiraValue: UInt32 = value + Constant.minHiragana - Constant.minKatakana
+            if Constant.nonExistentHiragana.contains(hiraValue) == false, let scalar = Unicode.Scalar(value + Constant.minHiragana - Constant.minKatakana) {
+                return Character(scalar)
+            }
         }
-        
+           
         return self
     }
 }

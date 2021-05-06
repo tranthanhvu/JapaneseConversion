@@ -28,8 +28,8 @@ struct SearchView: View {
                 })
                 .pickerStyle(SegmentedPickerStyle())
                 
-                Picker(selection: $viewModel.sizeType, label: Text("Picker"), content: {
-                    ForEach(JapaneseCharSizeType.allCases, id: \.self) { (type) in
+                Picker(selection: $viewModel.formType, label: Text("Picker"), content: {
+                    ForEach(JapaneseFormType.allCases, id: \.self) { (type) in
                         Text(type.name).tag(type.rawValue)
                     }
                 })

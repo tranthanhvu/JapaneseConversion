@@ -14,7 +14,7 @@ class SearchViewModel: ObservableObject {
     // Input
     @Published var searchText = "だめ"
     @Published var searchType = SearchType.exact
-    @Published var sizeType = JapaneseCharSizeType.fullSize
+    @Published var formType = JapaneseFormType.fullWidth
     
     // Output
     @Published private var searchArray: [String] = []

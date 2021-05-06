@@ -21,16 +21,16 @@ enum JapaneseCharType: Int, CaseIterable {
     }
 }
 
-enum JapaneseCharSizeType: Int, CaseIterable {
-    case fullSize
+enum JapaneseFormType: Int, CaseIterable {
+    case fullWidth
     case both
-    case halfSize
+    case halfWidth
     
     var name: String {
         switch self {
-        case .fullSize: return "full-size"
+        case .fullWidth: return "full-width"
         case .both: return "both"
-        case .halfSize: return "half-size"
+        case .halfWidth: return "half-width"
         }
     }
 }
