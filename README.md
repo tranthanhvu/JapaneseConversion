@@ -8,10 +8,10 @@ If something goes wrong, please let me in on it. I'd appreciate that.
 ![Conversion](./Previews/Conversion.gif) ![Searching](./Previews/Searching.gif)
 
 
-### Core
+### Achieve
 
 I've used the constant below to distinguish characters which one is katakana, hiragana, or neither
-```
+```swift
     struct Constant {
         static let minKatakana: UInt32 = 0x30a0
         static let maxKatakana: UInt32 = 0x30ff
@@ -23,8 +23,36 @@ I've used the constant below to distinguish characters which one is katakana, hi
     }
 ```
 
+Then you can convert char by char to get a complete converted string. Note, You have to handle the logic by yourself. This approach is good if you want more control in translation.
+```swift
+    extension String {
+        func toKataKana() -> String {
+            let converted = self.reduce("") { (result, char) -> String in
+                return result + String(char.toKatakana())
+            }
+
+            return converted
+        }
+    }
+```
+
+Or you can use `CFStringTransform` either to get a converted string. All logic of transformation will be handled by the CoreFoundation framework. So It's always true unless your application has any particular requirement.
+```swift
+    func toKatakana() -> String {
+        let str = NSString(string: self)
+        let convertedString: CFMutableString = str.mutableCopy() as! CFMutableString
+    
+        CFStringTransform(convertedString, nil, kCFStringTransformHiraganaKatakana, false)
+        
+        return String(convertedString)
+    }
+```
+
+Lastly, If you want to translate between full-width and hafl-width form, it's also supported. Look at `kCFStringTransformFullwidthHalfwidth` key to get more detail.
+
+
 ### References
-https://en.wikipedia.org/wiki/Hiragana_(Unicode_block)
-https://en.wikipedia.org/wiki/Katakana_(Unicode_block)
-https://en.wikipedia.org/wiki/Half-width_kana
-https://izsak.hatenadiary.org/entry/20100508/1273334470
+- https://en.wikipedia.org/wiki/Hiragana_(Unicode_block)
+- https://en.wikipedia.org/wiki/Katakana_(Unicode_block)
+- https://en.wikipedia.org/wiki/Half-width_kana
+- https://izsak.hatenadiary.org/entry/20100508/1273334470
