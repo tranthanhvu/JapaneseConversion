@@ -10,13 +10,7 @@ import Combine
 import TextView
 
 struct SearchView: View {
-    @State private var searchText: String = "だめ"
-    
-    @State private var charType: JapaneseCharType = JapaneseCharType.hiragana
-    
-    @State private var charSizeType: JapaneseCharSizeType = JapaneseCharSizeType.both
-    
-    @State private var content = "だめ ダメ"
+    @State private var content = "だめ ダメ, だめ"
     @State private var isEditing = false
     
     @ObservedObject var viewModel = SearchViewModel()
@@ -24,17 +18,17 @@ struct SearchView: View {
     var body: some View {
         VStack(alignment: .center, spacing: nil, content: {
             GroupBox(label: Text("Search Area"), content: {
-                TextField("Search Text", text: $searchText)
+                TextField("Search Text", text: $viewModel.searchText)
                     .background(Color.white)
                 
-                Picker(selection: $charType, label: Text("Picker"), content: {
-                    ForEach(JapaneseCharType.allCases, id: \.self) { (type) in
+                Picker(selection: $viewModel.searchType, label: Text("Picker"), content: {
+                    ForEach(SearchType.allCases, id: \.self) { (type) in
                         Text(type.name).tag(type.rawValue)
                     }
                 })
                 .pickerStyle(SegmentedPickerStyle())
                 
-                Picker(selection: $charSizeType, label: Text("Picker"), content: {
+                Picker(selection: $viewModel.sizeType, label: Text("Picker"), content: {
                     ForEach(JapaneseCharSizeType.allCases, id: \.self) { (type) in
                         Text(type.name).tag(type.rawValue)
                     }
@@ -45,7 +39,7 @@ struct SearchView: View {
 
             Divider()
             
-            TextView(text: $content, isEditing: $isEditing)
+            AttributedTextView(attributedText: $viewModel.content, isEditing: $isEditing)
                 .padding(.all, 10)
         })
     }

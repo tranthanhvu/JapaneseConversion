@@ -9,12 +9,12 @@ import Foundation
 
 extension Character {
     struct Constant {
-        static let minKatakana = 0x30a0
-        static let maxKatakana = 0x30ff
-        static let minHiragana = 0x3040
-        static let maxHiragana = 0x309f
-        static let minKanji = 0x4e00
-        static let maxKnaji = 0x9faf
+        static let minKatakana: UInt32 = 0x30a0
+        static let maxKatakana: UInt32 = 0x30ff
+        static let minHiragana: UInt32 = 0x3040
+        static let maxHiragana: UInt32 = 0x309f
+        static let minKanji: UInt32 = 0x4e00
+        static let maxKnaji: UInt32 = 0x9faf
     }
     
     var isKatakana: Bool {
@@ -39,5 +39,25 @@ extension Character {
         }
         
         return false
+    }
+    
+    func toKatakana() -> Character {
+        if isHiragana,
+           let value = self.unicodeScalars.first?.value,
+           let scalar = Unicode.Scalar(value - Constant.minHiragana + Constant.minKatakana) {
+            return Character(scalar)
+        }
+        
+        return self
+    }
+    
+    func toHiragana() -> Character {
+        if isKatakana,
+           let value = self.unicodeScalars.first?.value,
+           let scalar = Unicode.Scalar(value + Constant.minHiragana - Constant.minKatakana) {
+            return Character(scalar)
+        }
+        
+        return self
     }
 }

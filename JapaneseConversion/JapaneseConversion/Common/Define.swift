@@ -34,3 +34,15 @@ enum JapaneseCharSizeType: Int, CaseIterable {
         }
     }
 }
+
+enum SearchType: Int, CaseIterable {
+    case exact
+    case hiraganaAndkatakana
+    
+    var name: String {
+        switch self {
+        case .exact: return "Exact"
+        case .hiraganaAndkatakana: return "Hiragana And Katakana"
+        }
+    }
+}
